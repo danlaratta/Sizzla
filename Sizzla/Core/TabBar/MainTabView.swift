@@ -9,33 +9,31 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @State private var selectedTab = 0
-    
     var body: some View {
         TabView {
-            ContentView()
+            HomeView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-                .onAppear { selectedTab = 0 }
-                .tag(0)
             
-            
-            Text("Tab 3")
+            DiscoverView()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("Discover", systemImage: "magnifyingglass")
                 }
-                .onAppear { selectedTab = 1 }
-                .tag(1)
                 
-            Text("Tab 3")
+            RecipesView()
                 .tabItem {
-                    Label("Profile", systemImage: "person")
+                    Label("Recipes", systemImage: "fork.knife")
                         .frame(width: 20, height: 200)
                 }
-                .onAppear { selectedTab = 2 }
-                .tag(2)
+            
+            GroceriesView()
+                .tabItem {
+                    Label("Groceries", systemImage: "checklist")
+                        .frame(width: 20, height: 200)
+                }
         }
+        .tint(Color("appGreen"))
     }
 }
 
