@@ -16,10 +16,10 @@ struct MainTabView: View {
                     Label("Home", systemImage: "house")
                 }
             
-            DiscoverView()
-                .tabItem {
-                    Label("Discover", systemImage: "magnifyingglass")
-                }
+//            DiscoverView()
+//                .tabItem {
+//                    Label("Discover", systemImage: "magnifyingglass")
+//                }
                 
             RecipesView()
                 .tabItem {

@@ -13,14 +13,12 @@ struct ToolBar: View {
     
     var body: some View {
         HStack {
-            // Leading Item (Title)
             Text(title)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
             
-            // Trailing Item (Filters Button)
             NavigationLink(destination: filtersDestination) {
                 Image(systemName: "slider.horizontal.3")
                     .foregroundStyle(.black)
