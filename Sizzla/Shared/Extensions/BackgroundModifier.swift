@@ -11,7 +11,7 @@ import SwiftUI
 struct BackgroundModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
-            Color(.white).ignoresSafeArea() // Enforce the background color≤
+            Color("bg").ignoresSafeArea() // Enforce the background color
             content // The actual content layered on top
         }
     }

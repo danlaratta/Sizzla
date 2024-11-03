@@ -11,27 +11,26 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            
-//            DiscoverView()
-//                .tabItem {
-//                    Label("Discover", systemImage: "magnifyingglass")
-//                }
+            Group {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
                 
-            RecipesView()
-                .tabItem {
-                    Label("Recipes", systemImage: "fork.knife")
-                        .frame(width: 20, height: 200)
-                }
-            
-            GroceriesView()
-                .tabItem {
-                    Label("Groceries", systemImage: "checklist")
-                        .frame(width: 20, height: 200)
-                }
+                RecipesView()
+                    .tabItem {
+                        Label("Recipes", systemImage: "fork.knife")
+                            .frame(width: 20, height: 200)
+                    }
+                
+                GroceriesView()
+                    .tabItem {
+                        Label("Groceries", systemImage: "checklist")
+                            .frame(width: 20, height: 200)
+                    }
+            }
+            .toolbarBackground(Color("bg"), for: .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
         }
         .tint(Color("appGreen"))
     }
