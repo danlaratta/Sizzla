@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct ToolBar: View {
-    var title: String
-    var filtersDestination: AnyView
+    let isHomeView: Bool
     
     var body: some View {
-        HStack {
-            Text(title)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Spacer()
-            
-            NavigationLink(destination: filtersDestination) {
-                Image(systemName: "slider.horizontal.3")
-                    .foregroundStyle(.black)
+        VStack(spacing: 50){
+            HStack {
+                // TODO: Change "Dan" to user's name dynamically
+                Text(isHomeView == true ? "Hey Dan" : "Sizzla")
+                    .font(.system(size: 30))
+                    .fontWeight(.black)
+                
+                Spacer()
+                
+                Image(systemName: "person.circle.fill")
+                    .font(.system(size: 20))
             }
         }
     }
 }
 
 #Preview {
-    ToolBar(title: "Logo", filtersDestination: AnyView(DiscoverView()))
+    ToolBar(isHomeView: true)
 }

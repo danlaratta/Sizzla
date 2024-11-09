@@ -2,86 +2,91 @@
 //  RecipeCard.swift
 //  Sizzla
 //
-//  Created by Daniel Laratta on 11/1/24.
+//  Created by Daniel Laratta on 11/5/24.
 //
 
 import SwiftUI
 
 struct RecipeCard: View {
+    @State private var isSaved = false
     let image: String
     let name: String
-    let category: String
     let timeCook: String
     let rating: String
     
+    // TODO: Clean up view so it's less clunky
+    
     var body: some View {
-        HStack {
-            Image(image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 175, height: 175)
+        VStack {
+            ZStack(alignment: .bottomLeading) {
+                // MARK: Image
+                Image(image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 225)
+                
+                // MARK: Gradient Overlay
+                LinearGradient(
+                    gradient: Gradient(stops: [
+                        .init(color: Color.black.opacity(0.2), location: 0.0),  // Top, lighter
+                        .init(color: Color.black.opacity(0.4), location: 0.6),  // 70% point
+                        .init(color: Color.black.opacity(0.8), location: 1.0)   // Bottom, darker
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .clipped() // Ensures it crops within the frame
-            
-            
-            VStack(alignment: .leading) {
-                Text(name)
-                    .font(.title)
                 
-                Text(category)
                 
-                Text(timeCook)
-                
-                Text("\(Image(systemName: "star.fill")) \(rating)")
-                    .foregroundStyle(Color("appOrange"))
-                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Spacer()
+                        
+                        Text(name)
+                            .font(.title3.bold())
+                            .foregroundStyle(.white)
+                        
+                        HStack {
+                            Text(timeCook)
+                                .foregroundStyle(.white)
+                            
+                            Text("\(Image(systemName: "star.fill")) \(rating)")
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Spacer()
+                        
+                        Button {
+                            isSaved.toggle()
+                        } label: {
+                            ZStack {
+                                // TODO: decide design (Animate color change so its more smooth if using Cicle or cool animation when tapped)
+//                                Circle()
+//                                    .frame(width: 30, height: 30)
+//                                    .foregroundStyle(isSaved ? Color("appOrange") : .white)
+//                                    .foregroundStyle(.white)
+                                
+                                Image(systemName: isSaved ? "heart.fill" : "heart")
+                                    .font(.system(size: 20))
+//                                    .foregroundStyle(isSaved ? .white : .black)
+//                                    .foregroundStyle(isSaved ? Color("appOrange") : .black)
+                                    .foregroundStyle(isSaved ? Color("appOrange") : .white)
+                            }
+                        }
+                    }
+                }
+                .padding()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 200)
-        .background(.red)
+        .frame(maxHeight: 225)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
-    
-//    HStack(spacing: 16) {
-//                // Image Section
-//                Image(image)
-//                    .resizable()
-//                    .scaledToFill()
-//                    .frame(width: 100, height: 100) // Square image
-//                    .clipShape(RoundedRectangle(cornerRadius: 10))
-//                    .clipped() // Ensures it crops within the frame
-//                
-//                // Text Section
-//                VStack(alignment: .leading, spacing: 4) {
-//                    Text(name)
-//                        .font(.headline)
-//                        .lineLimit(1)
-//                    
-//                    Text(category)
-//                        .font(.subheadline)
-//                        .foregroundColor(.secondary)
-//                    
-//                    Text(timeCook)
-//                        .font(.subheadline)
-//                        .foregroundColor(.secondary)
-//                    
-//                    HStack(spacing: 4) {
-//                        Image(systemName: "star.fill")
-//                            .foregroundColor(Color("appOrange"))
-//                        Text(rating)
-//                            .foregroundColor(.secondary)
-//                    }
-//                }
-//                .padding(.vertical, 10) // Padding around text section for spacing consistency
-//            }
-//            .padding(16) // Padding inside card
-//            .background(Color.mint)
-//            .clipShape(RoundedRectangle(cornerRadius: 15))
-//            .shadow(radius: 5) // Optional: shadow for elevation effect
-//        }
 }
 
-
 #Preview {
-    RecipeCard(image: "burger", name: "Cheese Burger", category: "American", timeCook: "25 mins", rating: "4.5")
+    RecipeCard(image: "burger", name: "Cheese Burger", timeCook: "25 mins", rating: "4.5")
 }

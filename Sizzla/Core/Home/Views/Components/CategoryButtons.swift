@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryButtons: View {
     @Binding var activeCategory: String
-    let categories = ["All", "Breakfast", "Lunch", "Dinner", "Test1", "Test2"]
+    let categories = ["All", "Breakfast", "Lunch", "Dinner", "Category1", "Category2"]
     
     var body: some View {
         VStack(alignment: .leading) {
