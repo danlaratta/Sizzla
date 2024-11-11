@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     @State var isLoggedIn: Bool = false
+//    @Environment(RecipeViewModel.self) var recipeViewModel
+    
     
     var body: some View {
         MainTabView()

@@ -8,23 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     @State private var searchText = ""
     @State private var activeCategory = "All"
-    @State private var isSaved = false
     @State private var isGridView = false
     let categories = ["All", "Breakfast", "Lunch", "Dinner", "Test1", "Test2"]
+    
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 30) {
-                // MARK: Search Bar
                 SearchBar(searchText: $searchText)
                 
-                // MARK: Category Buttons
                 CategoryButtons(activeCategory: $activeCategory)
                 
-                // MARK: Recipe Cards
                 VStack(alignment: .leading) {
                     SectionHeader(isGridView: $isGridView, header: $activeCategory)
                     RecipeListView(isGridView: $isGridView)
@@ -49,6 +45,7 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environment(RecipeViewModel())
 }
 
 

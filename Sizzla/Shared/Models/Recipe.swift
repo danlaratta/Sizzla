@@ -7,14 +7,34 @@
 
 import Foundation
 
-struct Recipe: Identifiable, Hashable {
-    let id: UUID = UUID()
-    let image: String
-    let name: String
-    let category: String
-    let timeCook: String
-    let rating: String
-    
+//struct Recipe: Identifiable {
+//    let id: UUID = UUID()
+//    let image: String
+//    let name: String
+//    let timeCook: String
+//    let rating: String
+//    var isSaved: Bool = false
+//}
+
+@Observable
+class Recipe: ObservableObject, Identifiable {
+    var id: UUID
+    var image: String
+    var name: String
+    var timeCook: String
+    var rating: String
+    var isSaved: Bool
+
+    init(id: UUID = UUID(), image: String, name: String, timeCook: String, rating: String, isSaved: Bool = true) {
+        self.id = id
+        self.image = image
+        self.name = name
+        self.timeCook = timeCook
+        self.rating = rating
+        self.isSaved = isSaved
+    }
+
+    func toggleSaved() {
+        isSaved.toggle() // Toggle the isSaved state
+    }
 }
-
-

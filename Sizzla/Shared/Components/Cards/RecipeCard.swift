@@ -8,19 +8,14 @@
 import SwiftUI
 
 struct RecipeCard: View {
-    @State private var isSaved = false
-    let image: String
-    let name: String
-    let timeCook: String
-    let rating: String
-    
-    // TODO: Clean up view so it's less clunky
+//    @Environment(RecipeViewModel.self) private var recipeViewModel
+    @Bindable var recipe: Recipe
     
     var body: some View {
         VStack {
             ZStack(alignment: .bottomLeading) {
                 // MARK: Image
-                Image(image)
+                Image(recipe.image)
                     .resizable()
                     .scaledToFill()
                     .frame(height: 225)
@@ -28,9 +23,9 @@ struct RecipeCard: View {
                 // MARK: Gradient Overlay
                 LinearGradient(
                     gradient: Gradient(stops: [
-                        .init(color: Color.black.opacity(0.2), location: 0.0),  // Top, lighter
-                        .init(color: Color.black.opacity(0.4), location: 0.6),  // 70% point
-                        .init(color: Color.black.opacity(0.8), location: 1.0)   // Bottom, darker
+                        .init(color: Color.black.opacity(0.2), location: 0.0), 
+                        .init(color: Color.black.opacity(0.4), location: 0.6),
+                        .init(color: Color.black.opacity(0.8), location: 1.0)
                     ]),
                     startPoint: .top,
                     endPoint: .bottom
@@ -42,15 +37,15 @@ struct RecipeCard: View {
                     VStack(alignment: .leading) {
                         Spacer()
                         
-                        Text(name)
+                        Text(recipe.name)
                             .font(.title3.bold())
                             .foregroundStyle(.white)
                         
                         HStack {
-                            Text(timeCook)
+                            Text(recipe.timeCook)
                                 .foregroundStyle(.white)
                             
-                            Text("\(Image(systemName: "star.fill")) \(rating)")
+                            Text("\(Image(systemName: "star.fill")) \(recipe.rating)")
                                 .foregroundStyle(.white)
                         }
                     }
@@ -61,20 +56,13 @@ struct RecipeCard: View {
                         Spacer()
                         
                         Button {
-                            isSaved.toggle()
+//                            recipeViewModel.toggleSaved(for: recipe.id)
+                            recipe.isSaved.toggle()
                         } label: {
                             ZStack {
-                                // TODO: decide design (Animate color change so its more smooth if using Cicle or cool animation when tapped)
-//                                Circle()
-//                                    .frame(width: 30, height: 30)
-//                                    .foregroundStyle(isSaved ? Color("appOrange") : .white)
-//                                    .foregroundStyle(.white)
-                                
-                                Image(systemName: isSaved ? "heart.fill" : "heart")
+                                Image(systemName: recipe.isSaved ? "heart.fill" : "heart")
                                     .font(.system(size: 20))
-//                                    .foregroundStyle(isSaved ? .white : .black)
-//                                    .foregroundStyle(isSaved ? Color("appOrange") : .black)
-                                    .foregroundStyle(isSaved ? Color("appOrange") : .white)
+                                    .foregroundStyle(recipe.isSaved ? Color("appOrange") : .white)
                             }
                         }
                     }
@@ -88,5 +76,6 @@ struct RecipeCard: View {
 }
 
 #Preview {
-    RecipeCard(image: "burger", name: "Cheese Burger", timeCook: "25 mins", rating: "4.5")
+    RecipeCard(recipe: Recipe(image: "burger", name: "Cheese Burger", timeCook: "25 mins", rating: "4.5"))
+        .environment(RecipeViewModel())
 }
