@@ -17,7 +17,7 @@ struct MainTabView: View {
                         Label("Home", systemImage: "house")
                     }
                 
-                RecipesView()
+                RecipesCollectionsView()
                     .tabItem {
                         Label("Recipes", systemImage: "fork.knife")
                             .frame(width: 20, height: 200)
