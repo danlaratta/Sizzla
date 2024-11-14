@@ -24,14 +24,16 @@ class Recipe: ObservableObject, Identifiable {
     var timeCook: String
     var rating: String
     var isSaved: Bool
+    var ingredients: [String]
 
-    init(id: UUID = UUID(), image: String, name: String, timeCook: String, rating: String, isSaved: Bool = true) {
+    init(id: UUID = UUID(), image: String, name: String, timeCook: String, rating: String, isSaved: Bool = true, ingredients: [String]) {
         self.id = id
         self.image = image
         self.name = name
         self.timeCook = timeCook
         self.rating = rating
         self.isSaved = isSaved
+        self.ingredients = ingredients
     }
 
     func toggleSaved() {

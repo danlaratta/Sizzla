@@ -11,7 +11,6 @@ struct SectionHeader: View {
     @Binding var isGridView: Bool
     @Binding var header: String
     
-    
     var body: some View {
         HStack {
             Text(header)

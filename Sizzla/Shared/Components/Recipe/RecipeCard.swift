@@ -76,6 +76,6 @@ struct RecipeCard: View {
 }
 
 #Preview {
-    RecipeCard(recipe: Recipe(image: "burger", name: "Cheese Burger", timeCook: "25 mins", rating: "4.5"))
+    RecipeCard(recipe: Recipe(image: "burger", name: "Cheese Burger", timeCook: "25 mins", rating: "4.5", ingredients: ["Flour", "Eggs", "Milk"]))
         .environment(RecipeViewModel())
 }

@@ -26,12 +26,12 @@ class RecipeViewModel {
     
     func loadSampleData() {
         recipes = [
-            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76"),
-            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76"),
-            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76"),
-            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76"),
-            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76"),
-            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76"),
+            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76", ingredients: ["Flour", "Eggs", "Milk"]),
+            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76", ingredients: ["Flour", "Eggs", "Milk"]),
+            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76", ingredients: ["Flour", "Eggs", "Milk"]),
+            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76", ingredients: ["Flour", "Eggs", "Milk"]),
+            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76", ingredients: ["Flour", "Eggs", "Milk"]),
+            Recipe(image: "burger", name: "Cheese Burger", timeCook: "20 mins", rating: "4.76", ingredients: ["Flour", "Eggs", "Milk"]),
         ]
     }
     

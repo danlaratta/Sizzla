@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct RecipesCollectionsView: View {
+struct RecipesView: View {
     @State private var searchText = ""
+    @State private var isGridView = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
@@ -21,8 +22,8 @@ struct RecipesCollectionsView: View {
                         HStack {
                             Image(systemName: "plus.square")
                             
-                            Text("New Collection")
-                                .font(.callout)
+                            Text("New Recipe")
+                                .font(.headline)
                         }
                         
                         Spacer()
@@ -34,8 +35,10 @@ struct RecipesCollectionsView: View {
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(0..<4) { _ in
-                                CategoryCard()
-                                    .padding(.top, 5)
+                                NavigationLink(destination: RecipeListView(isGridView: $isGridView)) {
+                                    CategoryCard(image: "burger", name: "Breakfast", numRecipes: "5")
+                                        .padding(.top, 5)
+                                }
                             }
                         }
                     }
@@ -57,14 +60,19 @@ struct RecipesCollectionsView: View {
 }
 
 #Preview {
-    RecipesCollectionsView()
+    RecipesView()
 }
 
+// TODO: Extract into separate component
 struct CategoryCard: View {
+    let image: String
+    let name: String
+    let numRecipes: String
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                Image("burger")
+                Image(image)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 130, height: 130)
@@ -72,11 +80,11 @@ struct CategoryCard: View {
                     .clipped()
                 
                 VStack(alignment: .leading) {
-                    Text("Breakfast")
+                    Text(name)
                         .font(.callout)
                         .fontWeight(.semibold)
                     
-                    Text("Recipes: 5")
+                    Text(numRecipes)
                         .font(.footnote)
                     
                 }

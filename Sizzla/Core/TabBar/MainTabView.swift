@@ -14,22 +14,20 @@ struct MainTabView: View {
             Group {
                 HomeView()
                     .tabItem {
-                        Label("Home", systemImage: "house")
+                        TabLabel(text: "Home", icon: "house")
                     }
                 
-                RecipesCollectionsView()
+                RecipesView()
                     .tabItem {
-                        Label("Recipes", systemImage: "fork.knife")
-                            .frame(width: 20, height: 200)
+                        TabLabel(text: "Recipes", icon: "fork.knife")
                     }
                 
                 GroceriesView()
                     .tabItem {
-                        Label("Groceries", systemImage: "checklist")
-                            .frame(width: 20, height: 200)
+                        TabLabel(text: "Groceries", icon: "checklist")
                     }
             }
-            .toolbarBackground(Color("bg"), for: .tabBar)
+            .toolbarBackground(.white, for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
         }
         .tint(Color("appGreen"))
@@ -38,4 +36,21 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
+        .environment(RecipeViewModel())
+}
+
+struct TabLabel: View {
+    let text: String
+    let icon: String
+    
+    var body: some View {
+        Label {
+            Text(text)
+        } icon: {
+            Image(systemName: icon)
+                .resizable() // Make the icon resizable
+                .frame(width: 10, height: 10) // Adjust the frame for larger size
+//                .padding(.bott1m, 10) // Add bottom padding to center it a bit more
+        }
+    }
 }

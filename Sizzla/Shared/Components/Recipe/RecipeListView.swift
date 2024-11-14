@@ -16,13 +16,17 @@ struct RecipeListView: View {
         ScrollView {
             if !isGridView {
                 ForEach(recipeViewModel.recipes) { recipe in
-                    RecipeCard(recipe: recipe)
+                    NavigationLink(destination: RecipeDetailsView()) {
+                        RecipeCard(recipe: recipe)
+                    }
                 }
             }
             else {
                 LazyVGrid(columns: columns) {
                     ForEach(recipeViewModel.recipes) { recipe in
-                        GridRecipeCard(image: recipe.image, name: recipe.name, timeCook: recipe.timeCook, rating: recipe.rating)
+                        NavigationLink(destination: RecipeDetailsView()) {
+                            GridRecipeCard(image: recipe.image, name: recipe.name, timeCook: recipe.timeCook, rating: recipe.rating)
+                        }
                     }
                 }
             }

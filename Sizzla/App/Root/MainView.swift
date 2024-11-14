@@ -26,5 +26,6 @@ struct MainView: View {
 
 #Preview {
     MainView()
+        .environment(RecipeViewModel())
 }
 
