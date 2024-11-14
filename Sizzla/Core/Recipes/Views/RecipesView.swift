@@ -84,7 +84,7 @@ struct CategoryCard: View {
                         .font(.callout)
                         .fontWeight(.semibold)
                     
-                    Text(numRecipes)
+                    Text("Recipes: \(numRecipes)")
                         .font(.footnote)
                     
                 }

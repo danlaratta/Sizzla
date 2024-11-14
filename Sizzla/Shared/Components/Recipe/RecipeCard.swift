@@ -41,7 +41,7 @@ struct RecipeCard: View {
                             .font(.title3.bold())
                             .foregroundStyle(.white)
                         
-                        HStack {
+                        HStack(spacing: 20) {
                             Text(recipe.timeCook)
                                 .foregroundStyle(.white)
                             
@@ -56,7 +56,6 @@ struct RecipeCard: View {
                         Spacer()
                         
                         Button {
-//                            recipeViewModel.toggleSaved(for: recipe.id)
                             recipe.isSaved.toggle()
                         } label: {
                             ZStack {
